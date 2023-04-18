@@ -1,7 +1,7 @@
 //MY ENTIRE LIBRARY IS IN THIS ARRAY
 let myLibrary = [];
 
-//MODEL FOR THE BOOKS
+//CONTRUCTOR FUNCTION FOR THE BOOKS
 
 function Book(title, author, pages, read) {
   (this.title = title),
@@ -17,6 +17,7 @@ function showLibrary() {
   deleteElement.forEach((element) => element.remove()); //DELETE THE OLD TABLE SO THAT IT DOESN'T REPEAT
 
   myLibrary.forEach((element) => {
+    //CREATE TABLE OF BOOKS
     const newRow = document.createElement("tr");
     newRow.classList.add("delete");
 
@@ -47,13 +48,12 @@ function showLibrary() {
 //ADD A NEW BOOK TO THE LIBRARY
 const addBookToLibrary = (event) => {
   event.preventDefault(); //prevents the form from submiting
-  let newBook = {
-    //create an object based on the user input information
-    title: document.querySelector("#title").value,
-    author: document.querySelector("#author").value,
-    pages: document.querySelector("#pages").value,
-    read: document.querySelector("#read").value,
-  };
+
+  let newBook = new Book();
+  newBook.title = document.querySelector("#title").value;
+  newBook.author = document.querySelector("#author").value;
+  newBook.pages = document.querySelector("#pages").value;
+  newBook.read = document.querySelector("#read").value;
 
   myLibrary.push(newBook); //add the object to the library array
   document.querySelector("form").reset(); //clear the form for the next entries

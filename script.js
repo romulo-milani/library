@@ -46,7 +46,7 @@ function showLibrary() {
 
 //ADD A NEW BOOK TO THE LIBRARY
 const addBookToLibrary = (event) => {
-  event.preventDefault(); //prevent the form from submiting
+  event.preventDefault(); //prevents the form from submiting
   let newBook = {
     //create an object based on the user input information
     title: document.querySelector("#title").value,
@@ -60,5 +60,4 @@ const addBookToLibrary = (event) => {
   showLibrary();
 };
 
-const addbtn = document.querySelector("#addBtn");
-addbtn.addEventListener("submit", addBookToLibrary);
+const form = document.addEventListener("submit", addBookToLibrary);

@@ -9,7 +9,7 @@
   </head>
   <body>
     <h1>My Simple Library</h1>
-    <form>
+    <form action="index.html" method="POST" name="newBook">
       <label for="title">Book title</label>
       <input type="text" name="book_title" id="title" required />
 
@@ -22,20 +22,14 @@
       <label for="read">Read? (True or False)</label>
       <input type="text" name="book_read" id="read" required />
 
-      <button type="submit">Add</button>
+      <button type="submit" id="addBtn">Add Book</button>
     </form>
-    <table>
+    <table id="table">
       <tr>
         <th>Name</th>
         <th>Author</th>
         <th>Pages</th>
         <th>Read?</th>
-      </tr>
-      <tr>
-        <td>Hobbit</td>
-        <td>Tokien</td>
-        <td>300</td>
-        <td>Yes</td>
       </tr>
     </table>
 

@@ -10,41 +10,55 @@ function Book(title, author, pages, read) {
     (this.read = read);
 }
 
-//FUNCTION THAT DISPLAYS THE INFO OF JUST ONE CHOSEN BOOK, ERASE IF NOT NEEDED!!!!
-
-Book.prototype.info = function () {
-  if (read == true) {
-    return `${title}, ${pages} pages, already read`;
-  } else {
-    return `${title}, ${pages} pages, not read yet`;
-  }
-};
-
-//ADD A NEW BOOK TO THE TABLE
-
-function addBookToLibrary(bookName) {
-  myLibrary.push(bookName);
-}
-
-//SHOWS THE ENTIRE LIBRARY
+//DISPLAYS THE BOOK LIST IN THE HTML TABLE
 function showLibrary() {
+  const table = document.querySelector("#table");
+  const deleteElement = document.querySelectorAll(".delete");
+  deleteElement.forEach((element) => element.remove()); //DELETE THE OLD TABLE SO THAT IT DOESN'T REPEAT
+
   myLibrary.forEach((element) => {
-    console.log(`Book title: ${element.title}\n`);
-    console.log(`Author: ${element.author}\n`);
-    console.log(`Number of pages: ${element.pages}`);
-    console.log(`Read? ${element.read}\n\n`);
+    const newRow = document.createElement("tr");
+    newRow.classList.add("delete");
+
+    const titleCell = document.createElement("td");
+    titleCell.classList.add("delete");
+    titleCell.innerText = `${element.title}`;
+    newRow.appendChild(titleCell);
+
+    const authorCell = document.createElement("td");
+    authorCell.classList.add("delete");
+    authorCell.innerText = `${element.author}`;
+    newRow.appendChild(authorCell);
+
+    const pagesCell = document.createElement("td");
+    pagesCell.classList.add("delete");
+    pagesCell.innerText = `${element.pages}`;
+    newRow.appendChild(pagesCell);
+
+    const readCell = document.createElement("td");
+    readCell.classList.add("delete");
+    readCell.innerText = `${element.read}`;
+    newRow.appendChild(readCell);
+
+    table.appendChild(newRow);
   });
 }
 
-/* ADDING A FEW TEST BOOKS
+//ADD A NEW BOOK TO THE LIBRARY
+const addBookToLibrary = (event) => {
+  event.preventDefault(); //prevent the form from submiting
+  let newBook = {
+    //create an object based on the user input information
+    title: document.querySelector("#title").value,
+    author: document.querySelector("#author").value,
+    pages: document.querySelector("#pages").value,
+    read: document.querySelector("#read").value,
+  };
 
-const hp = new Book("HP and the Phylosopher Stone", "JK Roling", 200, true);
-const hobbit = new Book("Hobbit", "Tolkien", 300, true);
-const it = new Book("it", "Stephen King", 1200, false);
+  myLibrary.push(newBook); //add the object to the library array
+  document.querySelector("form").reset(); //clear the form for the next entries
+  showLibrary();
+};
 
-addBookToLibrary(hp);
-addBookToLibrary(hobbit);
-addBookToLibrary(it);
-
-showLibrary();
-*/
+const addbtn = document.querySelector("#addBtn");
+addbtn.addEventListener("submit", addBookToLibrary);

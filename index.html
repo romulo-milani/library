@@ -8,6 +8,37 @@
     <title>Library</title>
   </head>
   <body>
+    <h1>My Simple Library</h1>
+    <form>
+      <label for="title">Book title</label>
+      <input type="text" name="book_title" id="title" required />
+
+      <label for="author">Author</label>
+      <input type="text" name="book_author" id="author" required />
+
+      <label for="pages">Number of Pages</label>
+      <input type="number" name="book_pages" id="pages" required />
+
+      <label for="read">Read? (True or False)</label>
+      <input type="text" name="book_read" id="read" required />
+
+      <button type="submit">Add</button>
+    </form>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Pages</th>
+        <th>Read?</th>
+      </tr>
+      <tr>
+        <td>Hobbit</td>
+        <td>Tokien</td>
+        <td>300</td>
+        <td>Yes</td>
+      </tr>
+    </table>
+
     <script src="script.js"></script>
   </body>
 </html>

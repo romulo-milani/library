@@ -1,9 +1,7 @@
-//MY ENTIRE LIBRARY IS IN THIS ARRAY
-let myLibrary = [];
-
-//CONTRUCTOR FUNCTION FOR THE BOOKS
+let myLibrary = []; //MY ENTIRE LIBRARY IS IN THIS ARRAY
 
 function Book(title, author, pages, status) {
+  //CONTRUCTOR FUNCTION FOR THE BOOKS
   (this.title = title),
     (this.author = author),
     (this.pages = pages),
@@ -62,6 +60,17 @@ const addBookToLibrary = (event) => {
 
   document.querySelector("form").reset(); //clear the form for the next entries
   showLibrary();
+
+  const removeBtn = document.querySelectorAll(".removeBtn");
+  removeBtn.forEach((element) => element.addEventListener("click", removeBook)); //adds the remove book function
 };
 
-const form = document.addEventListener("submit", addBookToLibrary);
+//REMOVE BOOK BUTTON
+const removeBook = (event) => {
+  const removeInput = document.querySelector(
+    `[data-remove = "${event.target.dataset.remove}"]`
+  );
+  removeInput.parentNode.parentNode.remove();
+};
+
+const form = document.addEventListener("submit", addBookToLibrary); //add the function to the add book button

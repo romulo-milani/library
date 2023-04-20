@@ -39,6 +39,14 @@ function showLibrary() {
   removeBtn.setAttribute("data-remove", `${newIndex}`); //when the user adds a new book to the library array, the index is stored in this property in HTML
   removeCell.appendChild(removeBtn);
 
+  /*CREATE THE CHANGE STATUS BUTTON*/
+  const changeStatusBtn = document.createElement("input");
+  changeStatusBtn.classList.add("changeStatusBtn");
+  changeStatusBtn.setAttribute("type", "button");
+  changeStatusBtn.setAttribute("value", "Change Status");
+  changeStatusBtn.setAttribute("data-remove", `${newIndex}`);
+  removeCell.appendChild(changeStatusBtn);
+
   newRow.appendChild(removeCell);
   table.appendChild(newRow);
 }
@@ -63,6 +71,11 @@ const addBookToLibrary = (event) => {
 
   const removeBtn = document.querySelectorAll(".removeBtn");
   removeBtn.forEach((element) => element.addEventListener("click", removeBook)); //adds the remove book function
+
+  const changeStatusBtn = document.querySelectorAll(".changeStatusBtn"); //adds the change status function
+  changeStatusBtn.forEach((element) =>
+    element.addEventListener("click", changeStatus)
+  );
 };
 
 //REMOVE BOOK BUTTON
@@ -70,7 +83,23 @@ const removeBook = (event) => {
   const removeInput = document.querySelector(
     `[data-remove = "${event.target.dataset.remove}"]`
   );
+
   removeInput.parentNode.parentNode.remove();
+};
+
+//CHANGE STATUS BUTTON
+const changeStatus = (event) => {
+  const changeStatusInput = document.querySelector(
+    `[data-remove = "${event.target.dataset.remove}"]`
+  );
+
+  const statusElement = changeStatusInput.parentNode.parentNode.children[3];
+
+  if (statusElement.innerHTML == "read") {
+    statusElement.innerHTML = "not read";
+  } else if (statusElement.innerHTML == "not read") {
+    statusElement.innerHTML = "read";
+  }
 };
 
 const form = document.addEventListener("submit", addBookToLibrary); //add the function to the add book button

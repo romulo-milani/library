@@ -9,3 +9,7 @@ td,
 th {
   padding: 5px;
 }
+
+form {
+  margin-bottom: 20px;
+}

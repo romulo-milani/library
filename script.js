@@ -3,47 +3,49 @@ let myLibrary = [];
 
 //CONTRUCTOR FUNCTION FOR THE BOOKS
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, status) {
   (this.title = title),
     (this.author = author),
     (this.pages = pages),
-    (this.read = read);
+    (this.status = status);
 }
 
-//DISPLAYS THE BOOK LIST IN THE HTML TABLE
 function showLibrary() {
+  //DISPLAYS THE LAST ADDED BOOK IN THE TABLE
   const table = document.querySelector("#table");
-  const deleteElement = document.querySelectorAll(".delete");
-  deleteElement.forEach((element) => element.remove()); //DELETE THE OLD TABLE SO THAT IT DOESN'T REPEAT
 
-  myLibrary.forEach((element) => {
-    //CREATE TABLE OF BOOKS
-    const newRow = document.createElement("tr");
-    newRow.classList.add("delete");
+  const newRow = document.createElement("tr");
 
-    const titleCell = document.createElement("td");
-    titleCell.classList.add("delete");
-    titleCell.innerText = `${element.title}`;
-    newRow.appendChild(titleCell);
+  const titleCell = document.createElement("td"); //create the title row
+  titleCell.innerText = `${myLibrary[newIndex].title}`;
+  newRow.appendChild(titleCell);
 
-    const authorCell = document.createElement("td");
-    authorCell.classList.add("delete");
-    authorCell.innerText = `${element.author}`;
-    newRow.appendChild(authorCell);
+  const authorCell = document.createElement("td"); //create the author row
+  authorCell.innerText = `${myLibrary[newIndex].author}`;
+  newRow.appendChild(authorCell);
 
-    const pagesCell = document.createElement("td");
-    pagesCell.classList.add("delete");
-    pagesCell.innerText = `${element.pages}`;
-    newRow.appendChild(pagesCell);
+  const pagesCell = document.createElement("td"); //create the pages row
+  pagesCell.innerText = `${myLibrary[newIndex].pages}`;
+  newRow.appendChild(pagesCell);
 
-    const readCell = document.createElement("td");
-    readCell.classList.add("delete");
-    readCell.innerText = `${element.read}`;
-    newRow.appendChild(readCell);
+  const statusCell = document.createElement("td"); //create the status row
+  statusCell.innerText = `${myLibrary[newIndex].status}`;
+  newRow.appendChild(statusCell);
 
-    table.appendChild(newRow);
-  });
+  /*CREATE THE REMOVE BUTTON*/
+  const removeCell = document.createElement("td"); //create the remove button cell
+  const removeBtn = document.createElement("input"); //create the remove button
+  removeBtn.classList.add("removeBtn");
+  removeBtn.setAttribute("type", "button");
+  removeBtn.setAttribute("value", "remove");
+  removeBtn.setAttribute("data-remove", `${newIndex}`); //when the user adds a new book to the library array, the index is stored in this property in HTML
+  removeCell.appendChild(removeBtn);
+
+  newRow.appendChild(removeCell);
+  table.appendChild(newRow);
 }
+
+let newIndex = 0; //used to track the last index of the myLibrary array
 
 //ADD A NEW BOOK TO THE LIBRARY
 const addBookToLibrary = (event) => {
@@ -53,9 +55,11 @@ const addBookToLibrary = (event) => {
   newBook.title = document.querySelector("#title").value;
   newBook.author = document.querySelector("#author").value;
   newBook.pages = document.querySelector("#pages").value;
-  newBook.read = document.querySelector("#read").value;
+  newBook.status = document.querySelector("#status").value;
 
   myLibrary.push(newBook); //add the object to the library array
+  newIndex = myLibrary.length - 1; //get the index of the newly added book and assign the data property in html
+
   document.querySelector("form").reset(); //clear the form for the next entries
   showLibrary();
 };

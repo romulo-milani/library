@@ -85,6 +85,7 @@ const removeBook = (event) => {
   );
 
   removeInput.parentNode.parentNode.remove();
+  myLibrary.splice(event.target.dataset.remove, 1);
 };
 
 //CHANGE STATUS BUTTON
@@ -105,7 +106,3 @@ const changeStatus = (event) => {
 };
 
 const form = document.addEventListener("submit", addBookToLibrary); //add the function to the add book button
-
-//change the status of the book on the library array
-
-//remove the book from the library array too

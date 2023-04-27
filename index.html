@@ -10,33 +10,54 @@
   <body>
     <h1>My Simple Library</h1>
     <form id="newBook">
-      <label for="title">Book title</label>
-      <input type="text" name="book_title" id="title" required />
+      <label for="title"></label>
+      <input
+        type="text"
+        name="book_title"
+        id="title"
+        placeholder="book title"
+        required
+      />
 
-      <label for="author">Author</label>
-      <input type="text" name="book_author" id="author" required />
+      <label for="author"></label>
+      <input
+        type="text"
+        name="book_author"
+        id="author"
+        placeholder="author"
+        required
+      />
 
-      <label for="pages">Number of Pages</label>
-      <input type="number" name="book_pages" id="pages" min="0" required />
+      <label for="pages"></label>
+      <input
+        type="number"
+        name="book_pages"
+        id="pages"
+        min="0"
+        placeholder="number of pages"
+        required
+      />
 
-      <label for="status">Status</label>
+      <label for="status"></label>
       <select name="book_status" id="status" required>
-        <option value="">--select an option</option>
+        <option value="">select status</option>
         <option value="read">read</option>
         <option value="not read">not read</option>
       </select>
 
       <input type="submit" id="addBtn" value="Add Book" />
     </form>
-    <table id="table">
-      <tr>
-        <th>Name</th>
-        <th>Author</th>
-        <th>Pages</th>
-        <th>Status</th>
-        <th>Action</th>
-      </tr>
-    </table>
+    <div class="tableWrapper">
+      <table id="table">
+        <tr>
+          <th>Name</th>
+          <th>Author</th>
+          <th>Pages</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </table>
+    </div>
 
     <script src="script.js"></script>
   </body>

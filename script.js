@@ -97,9 +97,15 @@ const changeStatus = (event) => {
 
   if (statusElement.innerHTML == "read") {
     statusElement.innerHTML = "not read";
+    myLibrary[event.target.dataset.remove].status = "not read";
   } else if (statusElement.innerHTML == "not read") {
     statusElement.innerHTML = "read";
+    myLibrary[event.target.dataset.remove].status = "read";
   }
 };
 
 const form = document.addEventListener("submit", addBookToLibrary); //add the function to the add book button
+
+//change the status of the book on the library array
+
+//remove the book from the library array too
